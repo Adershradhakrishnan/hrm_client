@@ -1,0 +1,27 @@
+.data{
+    background-color: orchid;
+    height: 70vh;
+}
+
+.logindata{
+    margin: auto;
+    margin-left: 750px;
+}
+
+.logindata label,button{
+    display: block;
+}
+
+.logindata input{
+    margin-bottom: 10px;
+}
+.centre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 900px;
+}
+.seven{
+    margin-left: 750px;
+}
+
