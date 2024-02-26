@@ -3,15 +3,39 @@ import './Login.css';
 import {BrowserRouter as Router,Route,Routes,Link} from 'react-router-dom';
 
 const Login = () =>{
-    const [username,setUserName] = useState('');
+    const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const navigate = useNavigate();
 
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        try{
+            const response = await axios.post('http://localhost:3000/login',{
+                email,
+                password
+            });
+
+            if (response.data.success) {
+                const token = response.data.data;
+                localStorage=setItem('token',token);
+
+                navigate('/getuser');
+                alert(response.data.message);
+            }else {
+                alert(response.data.message);
+            }
+        } catch (error){
+            console.log('Login failed:',error);
+        }
+    }; 
+
+   
     return(
         <div className="data">
             <h2 className="seven">LOGIN</h2>
-            <form className="logindata">
-                <label htmlFor="name">Enter Your UserName</label>
-                <input type="text" placeholder="Username" name="name" value={username} onChange={(e)=>setUserName(e.target.value)}/>
+            <form className="logindata" onSubmit={handleSubmit}>
+                <label htmlFor="name">Enter Your Email</label>
+                <input type="email" placeholder="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
                 <label htmlFor="password">Enter Your PassWord</label>
                 <input type="password" placeholder="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
