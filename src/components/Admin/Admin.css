@@ -1,13 +1,13 @@
  .adminlog{
     display: flex;
 }
-
+/* 
 .add{
     background-color: blueviolet;
     margin-top: 50px;
     width: 200px;
     padding-bottom: 100px;
-}
+} */
 
 .add img{
     height: 100px;

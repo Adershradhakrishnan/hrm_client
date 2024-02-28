@@ -25,7 +25,7 @@ function Login(){
             
             if (response.data.success) {
                 const token = response.data.data;
-                localStorage=setItem('token',token);
+                localStorage.setItem('token',token);
 
                 navigate('/admin');
                 alert(response.data.message);

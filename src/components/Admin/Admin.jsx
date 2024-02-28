@@ -11,16 +11,16 @@ import React from "react";
 
         <div className="adminlog">
 
-            <div className="add">
+             <div className="add">
 
                  {/* <img src={adminImage} alt="#" /> */}
 
-                 <h1>Adminname</h1>
+                 {/* <h1>Adminname</h1>
                  <ul className="admine">
                      <li>Edit</li>
                      <li>settings</li>
-                </ul>
-             </div>
+                </ul> */}
+             </div> 
          </div>
          <div className="footer">
             <AdminFooter/>
