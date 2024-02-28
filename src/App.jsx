@@ -5,7 +5,7 @@ import Landingpage from './components/Landing/Landing';
 import AddUser from './components/AddUser/AddUser';
 import Login from './components/Login/Login';
 import {BrowserRouter as Router,Routes,Route,Link,useParams} from 'react-router-dom';
-// import Adminlogin from './components/Admin/Admin';
+import Admin from './components/Admin/Admin';
 
 function App() {
   
@@ -20,7 +20,7 @@ function App() {
        <Route path="/" exact element={<Landingpage/>}/>
        <Route path="/login" exact element={<Login/>}/>
        <Route path="/adduser" exact element={<AddUser/>}/>
-       {/* <Route path="/adminlogin" exact element={<Adminlogin/>}/> */}
+        <Route path="/admin" exact element={<Admin/>}/> 
        </Routes>
        </div>
        </Router>

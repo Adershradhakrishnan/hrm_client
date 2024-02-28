@@ -1,4 +1,4 @@
-/* .list,ul{
+ .list,ul{
     display: flex;
     padding: 0px 20px 0px 20px;
 }
@@ -13,4 +13,4 @@ nav{
     color:white;
     background-color: green;
     height: 8vh;
-} */
+} 

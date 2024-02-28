@@ -2,9 +2,9 @@ import React,{useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
-import {BrowserRouter as Router,Route,Routes,Link} from 'react-router-dom';
 
-const Login = () =>{
+
+function Login(){
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const navigate = useNavigate();
@@ -13,21 +13,28 @@ const Login = () =>{
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:3000/login',{
-                email,
-                password
+                email: email,
+                password: password
+            }, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
 
+            
             if (response.data.success) {
                 const token = response.data.data;
                 localStorage=setItem('token',token);
 
-                navigate('/getuser');
+                navigate('/admin');
                 alert(response.data.message);
             }else {
                 alert(response.data.message);
             }
         } catch (error){
             console.log('Login failed:',error);
+            alert('Login failed.please try again later.');
         }
     }; 
 
@@ -42,7 +49,7 @@ const Login = () =>{
                 <input type="password" placeholder="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
                 <div className="centre">
-                    <button><Link to={'/adduser'}>Login</Link></button>
+                    <button type="submit">Login</button>
                 </div>
             </form>
         </div>
