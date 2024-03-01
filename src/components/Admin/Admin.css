@@ -1,5 +1,7 @@
  .adminlog{
     display: flex;
+    background-image: url(../Admin/images/admin.jpeg);
+    background-size: cover;
 }
 /* 
 .add{

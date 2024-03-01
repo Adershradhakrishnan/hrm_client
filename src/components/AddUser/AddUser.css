@@ -10,7 +10,9 @@
 }
 
 .adddata{
-    background-color: green;
+    /* background-color: green; */
+    background-image: url('../AddUser/images/add.jpeg');
+    color:green;
     height: 80vh;
 }
 

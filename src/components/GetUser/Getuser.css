@@ -1,0 +1,40 @@
+.csk{
+    background-image: url('../GetUser/images/get.jpeg');
+    background-size: cover;
+}
+
+.rcb{
+    color: green;
+    padding: 10px;
+}
+
+.dry,p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dry p{
+    width: 300px;
+    color: green;
+}
+
+.dry1{
+    display: flex;
+}
+.dry2{
+    display: flex;
+}
+
+.dry3{
+    display: flex;
+}
+
+.mi{
+    display: flex;
+}
+
+.mi h1{
+    padding: 20px 0 10px 230px;
+    color: green;
+}

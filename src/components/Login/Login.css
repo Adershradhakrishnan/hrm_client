@@ -1,6 +1,9 @@
 .data{
-    background-color: orchid;
-    height: 70vh;
+    /* background-color: orchid; */
+    background-image: url('../Login/images/login.jpeg');
+    padding-top: 200px;
+    width: 100%;
+    height: 100vh;
 }
 
 .logindata{
@@ -19,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 900px;
+    margin-right: 500px;
 }
 .seven{
     margin-left: 750px;

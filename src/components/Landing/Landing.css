@@ -15,6 +15,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:burlywood;
+    /* background-color:burlywood; */
+    background-image: url('../Landing/images/landing.jpeg');
+    background-size: cover;
+    background-position: center;
 }
 
