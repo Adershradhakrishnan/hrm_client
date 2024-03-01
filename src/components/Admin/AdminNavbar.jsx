@@ -14,6 +14,7 @@
                      <li>Contact Us</li>
                      <li>services</li>
                     <li><Link to="/adduser"><button type="submit">Add</button></Link></li>
+                    <li><Link to="/getuser"><button type="submit">Users</button></Link></li>
                  </ul>
 
             </div>

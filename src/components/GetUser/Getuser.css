@@ -1,11 +1,15 @@
 .csk{
-    background-image: url('../GetUser/images/get.jpeg');
+    /* background-image: url('../GetUser/images/get.jpeg'); */
     background-size: cover;
+    width: 100%;
 }
 
 .rcb{
     color: green;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dry,p{
@@ -34,7 +38,9 @@
     display: flex;
 }
 
-.mi h1{
-    padding: 20px 0 10px 230px;
+.mi,h1{
+    padding: 20px 0px 10px 230px; 
     color: green;
+
 }
+

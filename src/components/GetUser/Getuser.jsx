@@ -42,9 +42,9 @@ function Getuser(){
                             <p>{user.phonenumber}</p>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <button>View</button>
-                        </div>
+                        </div> */}
 
                       </div>  
                 ))
