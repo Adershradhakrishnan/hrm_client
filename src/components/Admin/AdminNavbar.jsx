@@ -7,7 +7,7 @@
         <>
         <nav>
             <div className="list">
-                <h3>welcome</h3>
+                {/* <h3>welcome</h3> */}
                 <ul>
                     <li>Home</li>
                      <li>About Us</li>

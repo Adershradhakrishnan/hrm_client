@@ -2,6 +2,7 @@
     display: flex;
     background-image: url(../Admin/images/admin.jpeg);
     background-size: cover;
+    height: 100vh;
 }
 /* 
 .add{

@@ -2,6 +2,7 @@ import React,{useEffect,useState}  from "react";
 import axios from 'axios';
 import './Getuser.css';
 
+
 function Getuser(){
     const [data,setData] = useState([]);
 
@@ -21,6 +22,7 @@ function Getuser(){
         <>
         <div className="csk">
             <div className="rcb">
+               
                 <h1>Users</h1>
             </div>
             <div className="mi">
