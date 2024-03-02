@@ -7,10 +7,33 @@ import './Login.css';
 function Login(){
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    
+    const [emailerror,setEmailerror] = useState('');
+    const [passworderror,setPassworderror] = useState('');
     const navigate = useNavigate();
 
-    
+    const validateemail = (value) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!value) {
+            setEmailerror('please enter your email')
+        } else if (!emailRegex.test(value)) {
+            setEmailerror("invalid mail")
+        } else {
+            setEmailerror('')
+        }
+    }
+
+    const validatepassword = (value) => {
+        const passwordRegex = /^.{6,}$/
+
+        if (!value){
+            setPassworderror('Enter your password')
+        }else if (!passwordRegex.test(value)) {
+            setPassworderror('Enter valid password')
+        }else {
+            setPassworderror('')
+        }
+        
+    }
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -46,10 +69,17 @@ function Login(){
         <div className="data">
             <h2 className="seven">LOGIN</h2>
             <form className="logindata" onSubmit={handleSubmit}>
+                <div>
                 <label htmlFor="name">Enter Your Email</label>
-                <input type="email" placeholder="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                <input type="email" placeholder="email" name="email" value={email} onChange={(e)=> {setEmail(e.target.value); validateemail(e.target.value)}}/>
+                {emailerror && <p className="error-message">{emailerror}</p>}
+                </div>
+
+                <div>
                 <label htmlFor="password">Enter Your PassWord</label>
-                <input type="password" placeholder="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <input type="password" placeholder="password" name="password" value={password} onChange={(e)=> {setPassword(e.target.value); validatepassword(e.target.value)}}/>
+                {passworderror && <p className="error-message">{passworderror}</p>}
+                </div>
 
                 <div className="centre">
                     <button type="submit">Login</button>
