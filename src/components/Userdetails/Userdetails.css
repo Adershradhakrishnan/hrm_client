@@ -8,11 +8,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 100px;
+     padding: 100px; 
     width: 30vw;
     height: 80vh;
-    background-color: aqua;
+    background-color: #efdfce;
     color: black;
+    
 }
 
 .three label{
@@ -29,4 +30,17 @@
 }
 .three button{
     margin-top: 10px;
+    
 }
+
+.two,img{
+    display: flex;
+    height: 80vh;
+    width: 30vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+    
+

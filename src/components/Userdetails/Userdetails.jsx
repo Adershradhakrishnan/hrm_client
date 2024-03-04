@@ -2,6 +2,7 @@ import React,{useEffect,useState} from "react";
 import { useParams} from 'react-router-dom';
 import axios from 'axios';
 import '../Userdetails/Userdetails.css'
+import  Image1 from './images/user.webp';
 
 function Userdetails() {
     const { userId } = useParams();
@@ -20,11 +21,15 @@ function Userdetails() {
     }, [userId]);
 
     if (!user) {
-        return <div>Loading...</div>;
+        return <div>Loading...</div>
     }
 
     return(
         <div className="one">
+            
+            <div className="two">
+                <img src={Image1} alt="#"/>
+            </div>
             <div>
                 <div className="three">
                     <div>
@@ -48,12 +53,13 @@ function Userdetails() {
                     </div>
 
                     <div>
-                        <button type="submit">submit</button>
+                        <button type="submit">Submit</button>
                     </div>
-
+                    
                 </div>
             </div>
         </div>
+        
     )
 }
 

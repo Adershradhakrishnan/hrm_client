@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Getuser.css';
 
 
+
 function Getuser(){
     const [data,setData] = useState([]);
 
@@ -30,6 +31,7 @@ function Getuser(){
     return(
         <>
         <div className="csk">
+            
             <div className="rcb">
                
                 <h1>Users</h1>
@@ -41,7 +43,7 @@ function Getuser(){
             </div>
             {data.length ?(
                 data.map((user)=>(
-                    <div className="dry" key={user.id}>
+                    <div className="dry" key={user._id}>
                         <div className="dry1">
                             <p>{user.name}</p>
                         </div>
