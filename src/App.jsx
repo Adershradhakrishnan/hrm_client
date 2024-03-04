@@ -7,6 +7,7 @@ import Login from './components/Login/Login';
 import {BrowserRouter as Router,Routes,Route,Link,useParams} from 'react-router-dom';
 import Admin from './components/Admin/Admin';
 import Getuser from './components/GetUser/Getuser';
+import Userdetails from './components/Userdetails/Userdetails';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
        <Route path="/adduser" exact element={<AddUser/>}/>
         <Route path="/admin" exact element={<Admin/>}/> 
         <Route path="/getuser" exact element={<Getuser/>}/>
+        <Route path="/detailsuser/:userId" exact element={<Userdetails/>}/>
        </Routes>
        </div>
        </Router>

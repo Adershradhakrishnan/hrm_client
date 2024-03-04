@@ -1,4 +1,5 @@
-import React,{useEffect,useState}  from "react";
+import React,{useEffect,useId,useState}  from "react";
+import {BrowserRouter as Router,Route,Routes,Link,useParams,} from 'react-router-dom';
 import axios from 'axios';
 import './Getuser.css';
 
@@ -17,6 +18,14 @@ function Getuser(){
         };
         fetchData();
     },[]);
+
+    const HandleViewUser = (useId) => {
+        if (useId !== undefined) {
+            console.log("View button clicked for user ID:",useId);
+        }else {
+            console.log("User ID undefined");
+        }
+    };
 
     return(
         <>
@@ -44,9 +53,9 @@ function Getuser(){
                             <p>{user.phonenumber}</p>
                         </div>
 
-                        {/* <div>
-                            <button>View</button>
-                        </div> */}
+                         <div>
+                            <Link to={`/detailsuser/${user._id}`}><button onClick={()=> HandleViewUser(user._id)}>View</button></Link>
+                        </div> 
 
                       </div>  
                 ))
