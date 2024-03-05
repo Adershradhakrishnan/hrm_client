@@ -45,14 +45,14 @@ function Getuser(){
                 data.map((user)=>(
                     <div className="dry" key={user._id}>
                         <div className="dry1">
-                            <p>{user.name}</p>
+                            <p> <input type="text" defaultValue={user.name} /></p>
                         </div>
                        <div className="dry2">
-                        <p> {user.email}</p>
+                        <p> <input type="email" defaultValue={user.email} /></p>
                         </div> 
 
                         <div className="dry3">
-                            <p>{user.phonenumber}</p>
+                            <p> <input type="phonenumber" defaultValue={user.phonenumber} /></p>
                         </div>
 
                          <div>

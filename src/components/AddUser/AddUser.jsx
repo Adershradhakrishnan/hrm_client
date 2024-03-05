@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import {BrowserRouter as Router,Route,Routes,Link,useParams} from 'react-router-dom';
 import './AddUser.css';
 
 function AddUser(){
@@ -132,7 +133,7 @@ function AddUser(){
                 {passworderror && <p className="error-message">{passworderror}</p>}
 
                 <div className="centre">
-                    <button type="submit">Add User</button>
+                    <Link to="/getuser"><button type="submit" onClick={handleAddUser}>Add User</button></Link>
                 </div>
                 
             </form>

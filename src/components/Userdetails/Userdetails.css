@@ -42,5 +42,19 @@
     align-items: center;
     
 }
-    
+.buttonss{
+    display: flex;
+}
 
+.button1{
+    margin-right: 20px;
+}
+
+.button1 button:hover{
+    background-color: aqua;
+    color: white;
+}
+.button2 button:hover{
+    background-color: blueviolet;
+    color: white;
+}
