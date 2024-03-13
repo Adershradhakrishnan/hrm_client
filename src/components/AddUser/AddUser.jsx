@@ -90,6 +90,7 @@ function AddUser(){
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    
                 },
                 body: json_data,
             });

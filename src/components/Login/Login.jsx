@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
+import swal from 'sweetalert2';
 
 
 
@@ -53,15 +54,30 @@ function Login(){
             if (response.data.success) {
                 const token = response.data.data;
                 localStorage.setItem('token',token);
+                swal.fire({
+                    title: 'success',
+                    icon: 'success',
+                    
+                });
 
                 navigate('/admin');
-                alert(response.data.message);
+                // alert(response.data.message);
             }else {
-                alert(response.data.message);
+                swal.fire({
+                    title: 'error',
+                    icon:'error',
+                    text: 'something went wrong'
+                });
+                // alert(response.data.message);
             }
         } catch (error){
+            swal.fire({
+                title: 'error',
+                icon: 'error',
+                text: 'login failed'
+            });
             console.log('Login failed:',error);
-            alert('Login failed.please try again later.');
+            // alert('Login failed.please try again later.');
         }
     }; 
 
