@@ -1,6 +1,9 @@
-import React,{useState} from "react";
+import React,{useEffect,useState} from "react";
 import {BrowserRouter as Router,Route,Routes,Link,useParams} from 'react-router-dom';
 import './AddUser.css';
+import Login from "../Login/Login";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function AddUser(){
     const [name, setName] = useState('');
@@ -17,6 +20,17 @@ function AddUser(){
 
     const [password,setPassword] = useState('');
     const [passworderror,setPassworderror] = useState('');
+
+    const [token,setToken] = useState('')
+
+    useEffect(()=>{
+        const storedToken = localStorage.getItem('token');
+        //console.log("stored Token: ",storedToken);
+
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    },[]);
 
     const validatename = (value) => {
         const nameRegex = /^.[a-z]{6}$/
@@ -80,30 +94,65 @@ function AddUser(){
     }
 
     const handleAddUser = async (e) => {
+        e.preventDefault();
         try{
 
             const data = {name,email,phonenumber,pincode,password};
             const json_data = JSON.stringify(data);
             console.log("json_data: ",json_data)
 
-            const response = await fetch('http://localhost:3000/adduser',{
-                method: 'POST',
+            console.log("Token",token);
+
+            const response = await axios.post('http://localhost:3000/adduser',json_data,{
+               
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                     
                 },
                 body: json_data,
             });
-            console.log('Response received',response);
+            // console.log('Response received',response);
 
-            if (response.data.success){
-                alert(response.data.message);
-            }else{
-                alert(response.data.message);
+            const responseData = response.data;
+            console.log(responseData)
+            if(responseData.errors) {
+
+                if (responseData.errors.name || responseData.errors.name_empty) {
+                    setNameerror(responseData.errors.name_empty || responseData.errors.name)
+                }
+
+                if (responseData.errors.email || responseData.errors.email_empty) {
+                    setEmailerror(responseData.errors.email_empty || responseData.errors.email)
+                }
+
+                if (responseData.errors.phonenumber || responseData.errors.phonenumber_empty) {
+                    setPhonenumbererror(responseData.errors.phonenumber_empty || responseData.errors.phonenumber)
+                }
+
+                if(responseData.errors.pincode || responseData.errors.pincode_empty){
+                    setPincodeerror(responseData.errors.pincode_empty || responseData.errors.pincode)
+                }
+
+                if(responseData.errors.password_empty){
+                    setPassworderror(responseData.errors.password_empty)
+                }
+            }else if(responseData.success){
+
+                Swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text:response.message
+                });
             }
+
+           
         } catch(error) {
-            console.log('Adding user failed:',error);
-            alert('failed.please try again later.')
+           Swal.fire({
+            icon: "error",
+            title: "error",
+            text: "invalid email or password"
+           })
         }
     }
 
@@ -134,7 +183,9 @@ function AddUser(){
                 {passworderror && <p className="error-message">{passworderror}</p>}
 
                 <div className="centre">
-                    <Link to="/getuser"><button type="submit" onClick={handleAddUser}>Add User</button></Link>
+                    {/* <Link to="/getuser"> */}
+                        <button type="submit" onClick={handleAddUser}>Add User</button>
+                        {/* </Link> */}
                 </div>
                 
             </form>

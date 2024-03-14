@@ -8,21 +8,43 @@ import './Getuser.css';
 function Getuser(){
     const [data,setData] = useState([]);
 
+    const [token,setToken] = useState('')
+
+    useEffect(()=>{
+
+        const storedToken=localStorage.getItem('token');
+
+        if(storedToken){
+            setToken(storedToken);
+        }
+
+        console.log(token)
+    },[]);
+
     useEffect(()=>{
         const fetchData = async ()=>{
             try{
-                const response = await axios.get('http://localhost:3000/getuser');
+                const response = await axios.get('http://localhost:3000/getuser',{
+
+                   headers: {
+                      'Authorization': `Bearer ${token}`,
+
+                   },
+                });
                 setData(response.data.data);
             } catch (error) {
                 console.log('Error fetching data:',error);
             }
         };
+        if(token){
         fetchData();
-    },[]);
+        }
 
-    const HandleViewUser = (useId) => {
-        if (useId !== undefined) {
-            console.log("View button clicked for user ID:",useId);
+    },[token]);
+
+    const HandleViewUser = (userId) => {
+        if (userId !== undefined) {
+            console.log("View button clicked for user ID:",userId);
         }else {
             console.log("User ID undefined");
         }

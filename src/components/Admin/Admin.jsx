@@ -3,8 +3,32 @@ import React from "react";
 //  import adminImage from './images/admin.jpg';
  import AdminNavbar from "./AdminNavbar";
  import AdminFooter from "./AdminFooter";
+ import { useNavigate } from "react-router-dom";
+ import Swal from "sweetalert2";
 
  function Admin(){
+
+    const navigate = useNavigate();
+
+    const isTokenpresent = ()=>{
+
+        const token = localStorage.getItem('token');
+        return !!token;
+        
+    };
+
+    if (!isTokenpresent()){
+        Swal.fire({
+            title:"Error",
+            text: "need to login to access the admin page",
+            icon: "error",
+            button: "Login",
+        }).then(()=>{
+            navigate('/login');
+        });
+
+        return null;
+    }
     return(
         <>
          <AdminNavbar/>

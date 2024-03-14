@@ -39,6 +39,19 @@ function Login(){
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
+
+        if (!email || !password) {
+            if (!email) {
+                setEmailerror('Please enter your email');
+            }
+            if (!password) {
+                setPassworderror('Please enter your password');
+            }
+            return;
+        }
+        if (!emailerror || !passworderror) {
+            return;
+        }
         try{
             const response = await axios.post('http://localhost:3000/login',{
                 email: email,
@@ -55,28 +68,30 @@ function Login(){
                 const token = response.data.data;
                 localStorage.setItem('token',token);
                 swal.fire({
-                    title: 'success',
-                    icon: 'success',
-                    
-                });
+                    icon: "success",
+                    title: "success",
+                    text:response.data.message
+                    }).then(()=>{
+                        navigate('/admin');
+                    })
 
-                navigate('/admin');
+                
                 // alert(response.data.message);
             }else {
                 swal.fire({
-                    title: 'error',
-                    icon:'error',
-                    text: 'something went wrong'
-                });
+                    icon: "error",
+                    title:"error",
+                    text: "something went wrong"
+                })
                 // alert(response.data.message);
             }
         } catch (error){
             swal.fire({
-                title: 'error',
-                icon: 'error',
-                text: 'login failed'
-            });
-            console.log('Login failed:',error);
+                icon: "error",
+                title: "error",
+                text: "invalid email or password"
+            })
+            // console.log('Login failed:',error);
             // alert('Login failed.please try again later.');
         }
     }; 

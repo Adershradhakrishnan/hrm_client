@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import { Link, useParams} from 'react-router-dom';
+import { BrowserRouter as Router,Route,Routes,Link, useParams} from 'react-router-dom';
 import axios from 'axios';
 import '../Userdetails/Userdetails.css'
 import  Image1 from './images/user.webp';
