@@ -38,20 +38,20 @@ function Login(){
     }
 
     const handleSubmit = async (e)=>{
-        e.preventDefault();
+         e.preventDefault();
 
-        if (!email || !password) {
-            if (!email) {
-                setEmailerror('Please enter your email');
-            }
-            if (!password) {
-                setPassworderror('Please enter your password');
-            }
-            return;
-        }
-        if (!emailerror || !passworderror) {
-            return;
-        }
+        // if (!email || !password) {
+        //     if (!email) {
+        //          setEmailerror('Please enter your email');
+        //     }
+        //     if (!password) {
+        //         setPassworderror('Please enter your password');
+        //     }
+        //     return;
+        //  }
+        // if (!emailerror || !passworderror) {
+        //     return;
+        //  }
         try{
             const response = await axios.post('http://localhost:3000/login',{
                 email: email,
@@ -71,9 +71,10 @@ function Login(){
                     icon: "success",
                     title: "success",
                     text:response.data.message
-                    }).then(()=>{
-                        navigate('/admin');
                     })
+                     .then(()=>{
+                        navigate('/admin');
+                     })
 
                 
                 // alert(response.data.message);

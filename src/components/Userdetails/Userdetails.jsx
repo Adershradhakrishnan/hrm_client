@@ -41,9 +41,9 @@ function Userdetails() {
     return(
         <div className="one">
             
-            <div className="two">
+            {/* <div className="two">
                 <img src={Image1} alt="#"/>
-            </div>
+            </div> */}
             <div>
                 <div className="three">
                     <div>

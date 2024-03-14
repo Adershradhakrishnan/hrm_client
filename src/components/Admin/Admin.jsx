@@ -20,7 +20,7 @@ import React from "react";
     if (!isTokenpresent()){
         Swal.fire({
             title:"Error",
-            text: "need to login to access the admin page",
+            text: "need access",
             icon: "error",
             button: "Login",
         }).then(()=>{
