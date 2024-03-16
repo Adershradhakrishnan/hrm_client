@@ -84,7 +84,10 @@ function Getuser(){
                       </div>  
                 ))
             ) :(
-                <h1>Loading...</h1>
+                 <h1>Loading...</h1>
+                // <div class="spinner-border" role="status"> 
+                // <span class="visually-hidden">Loading...</span> 
+                // </div>
             )}
         </div>
         </>
