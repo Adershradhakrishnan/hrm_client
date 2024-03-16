@@ -4,8 +4,30 @@ import './AddUser.css';
 import Login from "../Login/Login";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function AddUser(){
+
+    const navigate=useNavigate();
+
+    const isTokenpresent = () => {
+
+        const token = localStorage.getItem('token');
+        return !!token;
+    };
+
+    if (!isTokenpresent()) {
+        Swal.fire({
+            title: "Error", 
+            text: "need to login to access the adduser.",
+            icon: "error",
+            button: "Login",
+        }).then(()=> {
+            navigate('/login');
+        });
+        return null;
+    }
+
     const [name, setName] = useState('');
     const [nameerror, setNameerror] = useState('');
 
@@ -18,8 +40,10 @@ function AddUser(){
     const [pincode,setPincode] = useState('');
     const [pincodeerror,setPincodeerror] = useState('');
 
-    const [password,setPassword] = useState('');
-    const [passworderror,setPassworderror] = useState('');
+    // const [password,setPassword] = useState('');
+    // const [passworderror,setPassworderror] = useState('');
+
+    const [generatedPassword, setGeneratedPassword] = useState('');
 
     const [token,setToken] = useState('')
 
@@ -81,23 +105,23 @@ function AddUser(){
         }
     }
 
-    const validatepassword = (value) => {
-        const passwordRegex = /^.{6,}$/
+    // const validatepassword = (value) => {
+    //     const passwordRegex = /^.{6,}$/
 
-        if(!value) {
-            setPassworderror('Enter your password')
-        }else if (passwordRegex.test(value)) {
-            setPassworderror('Enter valid password')
-        }else {
-            setPassworderror('')
-        }
-    }
+    //     if(!value) {
+    //         setPassworderror('Enter your password')
+    //     }else if (passwordRegex.test(value)) {
+    //         setPassworderror('Enter valid password')
+    //     }else {
+    //         setPassworderror('')
+    //     }
+    // }
 
     const handleAddUser = async (e) => {
         e.preventDefault();
         try{
 
-            const data = {name,email,phonenumber,pincode,password};
+            const data = {name,email,phonenumber,pincode};
             const json_data = JSON.stringify(data);
             console.log("json_data: ",json_data)
 
@@ -134,10 +158,12 @@ function AddUser(){
                     setPincodeerror(responseData.errors.pincode_empty || responseData.errors.pincode)
                 }
 
-                if(responseData.errors.password_empty){
-                    setPassworderror(responseData.errors.password_empty)
-                }
+                // if(responseData.errors.password_empty){
+                //     setPassworderror(responseData.errors.password_empty)
+                // }
             }else if(responseData.success){
+                const passwordFromServer = response.data.password;
+                setGeneratedPassword(passwordFromServer);
 
                 Swal.fire({
                     icon: "success",
@@ -162,25 +188,34 @@ function AddUser(){
             <h2>Add-User</h2>
 
             <form className="adddetails" onSubmit={handleAddUser}>
+
+                <div>
                 <label htmlFor="name">Enter Your UserName</label>
                 <input type="text" placeholder="Username" name="name" value={name} onChange={(e)=>{setName(e.target.value); validatename(e.target.value) }} required/>
                 {nameerror && <p className="error-message">{nameerror}</p>}
-
+                </div>
+                 
+                 <div>
                 <label htmlFor="email">Enter Your Email</label>
                 <input type="email" placeholder="email" name="email" value={email} onChange={(e)=> {setEmail(e.target.value); validateemail(e.target.value)}} required/>
                 {emailerror && <p className="error-message">{emailerror}</p>}
-
+                </div>
+                
+                <div>
                 <label htmlFor="phonenumber">Enter Your PhoneNumber</label>
                 <input type="text" placeholder="Enter Your PhoneNumber" name="phonenumber" value={phonenumber} onChange={(e)=> {setPhonenumber(e.target.value); validatephonenumber(e.target.value)}} required/>
                 {phonenumbererror && <p className="error-message">{phonenumbererror}</p>}
-
+                </div>
+                
+                <div>
                 <label htmlFor="pincode">Enter Your Pincode</label>
                 <input type="pincode" placeholder="Enter Your Pincode" name="pincode" value={pincode} onChange={(e)=> {setPincode(e.target.value); validatepincode(e.target.value)}} required/>
                 {pincodeerror && <p className="error-message">{pincodeerror}</p>}
+                </div>
 
-                <label htmlFor="password">Enter Your Password</label>
+                {/* <label htmlFor="password">Enter Your Password</label>
                 <input type="password" placeholder="Enter Your Password" name="password" value={password} onChange={(e)=> {setPassword(e.target.value); validatepassword(e.target.value)}} required/>
-                {passworderror && <p className="error-message">{passworderror}</p>}
+                {passworderror && <p className="error-message">{passworderror}</p>} */}
 
                 <div className="centre">
                     {/* <Link to="/getuser"> */}
@@ -189,6 +224,7 @@ function AddUser(){
                 </div>
                 
             </form>
+            {generatedPassword && <p>password generated: {generatedPassword}</p>}
         </div>
     )
 }
