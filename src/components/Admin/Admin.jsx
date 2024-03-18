@@ -5,6 +5,7 @@ import React from "react";
  import AdminFooter from "./AdminFooter";
  import { useNavigate } from "react-router-dom";
  import Swal from "sweetalert2";
+ import Spinner from "../Spinners/Spinners";
 
  function Admin(){
 

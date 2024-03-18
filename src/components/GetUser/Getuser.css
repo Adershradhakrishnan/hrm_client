@@ -55,4 +55,11 @@
 .rcb,h1{
     margin-bottom: 20px;
 }
-
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination button{
+    margin: 10px;
+}
