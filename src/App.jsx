@@ -8,6 +8,7 @@ import {BrowserRouter as Router,Routes,Route,Link,useParams} from 'react-router-
 import Admin from './components/Admin/Admin';
 import Getuser from './components/GetUser/Getuser';
 import Userdetails from './components/Userdetails/Userdetails';
+import Resetpassword from './components/Resetpassword/Resetpassword';
 
 function App() {
   
@@ -25,6 +26,7 @@ function App() {
         <Route path="/admin" exact element={<Admin/>}/> 
         <Route path="/getuser" exact element={<Getuser/>}/>
         <Route path="/detailsuser/:userId" exact element={<Userdetails/>}/>
+        <Route path="/reset-password" exact element={<Resetpassword/>}/>
        </Routes>
        </div>
        </Router>

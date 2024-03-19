@@ -97,6 +97,39 @@ function Login(){
         }
     }; 
 
+    const handleForgotPassword = async () => {
+        if(!email){
+            setEmailerror('please enter your email');
+            return;
+        }
+        try{
+            const response = await axios.post('http://localhost:3000/reset-password',{
+                email: email,
+            });
+
+            if(response.status === 200){
+                swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text: "password reset link has been sent to your email"
+                });
+            }else {
+                swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "failed to send reset link.please try again later."
+                });
+            }
+        } catch (error) {
+            console.log('Error',error);
+            swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "failed to send reset link.please try again later."
+            });
+        }
+    };
+
    
     return(
         
@@ -118,6 +151,10 @@ function Login(){
 
                 <div className="centre">
                     <button type="submit">Login</button>
+                </div>
+
+                <div>
+                    <button type="button" onClick={handleForgotPassword}>Forgot Password?</button>
                 </div>
             </form>
         </div>
