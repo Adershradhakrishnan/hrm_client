@@ -154,7 +154,7 @@ function Login(){
                 </div>
 
                 <div>
-                    <button type="button" onClick={handleForgotPassword}>Forgot Password?</button>
+                    {/* <button type="button" onClick={handleForgotPassword}>Forgot Password?</button> */}
                 </div>
             </form>
         </div>
