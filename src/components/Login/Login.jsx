@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 import swal from 'sweetalert2';
@@ -97,38 +97,38 @@ function Login(){
         }
     }; 
 
-    const handleForgotPassword = async () => {
-        if(!email){
-            setEmailerror('please enter your email');
-            return;
-        }
-        try{
-            const response = await axios.post('http://localhost:3000/reset-password',{
-                email: email,
-            });
+    // const handleForgotPassword = async () => {
+    //     if(!email){
+    //         setEmailerror('please enter your email');
+    //         return;
+    //     }
+    //     try{
+    //         const response = await axios.post('http://localhost:3000/reset-password',{
+    //             email: email,
+    //         });
 
-            if(response.status === 200){
-                swal.fire({
-                    icon: "success",
-                    title: "success",
-                    text: "password reset link has been sent to your email"
-                });
-            }else {
-                swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "failed to send reset link.please try again later."
-                });
-            }
-        } catch (error) {
-            console.log('Error',error);
-            swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "failed to send reset link.please try again later."
-            });
-        }
-    };
+    //         if(response.status === 200){
+    //             swal.fire({
+    //                 icon: "success",
+    //                 title: "success",
+    //                 text: "password reset link has been sent to your email"
+    //             });
+    //         }else {
+    //             swal.fire({
+    //                 icon: "error",
+    //                 title: "Error",
+    //                 text: "failed to send reset link.please try again later."
+    //             });
+    //         }
+    //     } catch (error) {
+    //         console.log('Error',error);
+    //         swal.fire({
+    //             icon: "error",
+    //             title: "Error",
+    //             text: "failed to send reset link.please try again later."
+    //         });
+    //     }
+    // };
 
    
     return(
@@ -154,7 +154,7 @@ function Login(){
                 </div>
 
                 <div>
-                    {/* <button type="button" onClick={handleForgotPassword}>Forgot Password?</button> */}
+                    <Link to="/forgot-password">Forgot password</Link>
                 </div>
             </form>
         </div>

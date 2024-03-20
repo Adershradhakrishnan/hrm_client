@@ -9,6 +9,7 @@ import Admin from './components/Admin/Admin';
 import Getuser from './components/GetUser/Getuser';
 import Userdetails from './components/Userdetails/Userdetails';
 import Resetpassword from './components/Resetpassword/Resetpassword';
+import Forgotpassword from './components/Forgotpassword/Forgotpassword';
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
         <Route path="/getuser" exact element={<Getuser/>}/>
         <Route path="/detailsuser/:userId" exact element={<Userdetails/>}/>
         <Route path="/reset-password" exact element={<Resetpassword/>}/>
+        <Route path="/forgot-password" exact element={<Forgotpassword/>}/>
        </Routes>
        </div>
        </Router>
