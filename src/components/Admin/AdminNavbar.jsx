@@ -15,6 +15,7 @@
                      <li>services</li>
                     <li><Link to="/adduser"><button type="submit">Add</button></Link></li>
                     <li><Link to="/getuser"><button type="submit">Users</button></Link></li>
+                    <li><Link to="changepassword"><button type="submit">Changepassword</button></Link></li>
                  </ul>
 
             </div>
