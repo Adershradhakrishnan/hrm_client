@@ -11,7 +11,8 @@ function Getuser(){
     const [currentpage, setCurrentpage] = useState(1);
     const [itemsperpage] = useState(5);
     const [totalPages, setTotalPages] = useState(1);
-    const [token,setToken] = useState('')
+    const [token,setToken] = useState('');
+    const [keyword, setKeyword] = useState('');
 
     useEffect(()=>{
 
@@ -32,6 +33,7 @@ function Getuser(){
                   params: {
                     page: currentpage,
                     limit: itemsperpage,
+                    keyword: keyword
                   },
 
                    headers: {
@@ -50,7 +52,7 @@ function Getuser(){
         fetchData();
         }
 
-    },[token, currentpage, itemsperpage]);
+    },[token, currentpage, itemsperpage,keyword]);
 
     const HandleViewUser = (userId) => {
         if (userId !== undefined) {
@@ -72,6 +74,12 @@ function Getuser(){
         }
     };
 
+    const handleSearch = (e) => {
+        const searchKeyword = e.target.value;
+        setKeyword(searchKeyword);
+        setCurrentpage(1);
+    };
+
     return(
         <>
         {/* <div className="csk"> */}
@@ -79,6 +87,7 @@ function Getuser(){
             <div className="rcb">
                
                 <h1>Users</h1>
+                <input type="text" placeholder="Search" value={keyword} onChange={handleSearch}/>
             </div>
             <div className="mi">
                 <h1>Name</h1>

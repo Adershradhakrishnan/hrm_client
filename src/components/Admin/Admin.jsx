@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
  import './Admin.css'
 //  import adminImage from './images/admin.jpg';
  import AdminNavbar from "./AdminNavbar";
@@ -8,6 +8,15 @@ import React from "react";
  import Spinner from "../Spinners/Spinners";
 
  function Admin(){
+    const [loading,setLoading] = useState(true);
+
+    useEffect(()=> {
+        const timeout = setTimeout(()=> {
+            setLoading(false);
+        },2000);
+
+        return () => clearTimeout(timeout);
+    }, []);
 
     const navigate = useNavigate();
 
@@ -37,14 +46,19 @@ import React from "react";
         <div className="adminlog">
 
              <div className="add">
+                {loading ? (
+                    <Spinner />
+                ) : (
+                  <>
+                 <h1>Name</h1>
+                 <ul className="adminlist">
+                    <li>Edit</li>
+                    <li>Settings</li>
+                    <li>View</li>
 
-                 {/* <img src={adminImage} alt="#" /> */}
-
-                 {/* <h1>Adminname</h1>
-                 <ul className="admine">
-                     <li>Edit</li>
-                     <li>settings</li>
-                </ul> */}
+                 </ul>
+                 </>
+            )}
              </div> 
          </div>
          <div className="footer">

@@ -65,16 +65,33 @@ function Login(){
 
             
             if (response.data.success) {
-                const token = response.data.data;
+
+                const {token,lastLogin,user_type} = response.data.data;
+                // const token = response.data.data;
                 localStorage.setItem('token',token);
+
+                const userTypemap={
+                     '65e9987a550c5c1f798ca45b': 'admin',
+                     '65e99895550c5c1f798ca45c': 'employee'
+                }
+                const usertype=userTypemap[user_type]
+
+
                 swal.fire({
                     icon: "success",
                     title: "success",
                     text:response.data.message
                     })
-                     .then(()=>{
-                        navigate('/admin');
-                     })
+                     .then((result)=>{
+                        if(result.isConfirmed){
+                            if(!lastLogin) {
+                                navigate('/changepassword');
+                            }else {
+                                navigate(usertype === 'admin' ? '/admin' : '/user');
+                            }
+                        }
+                        // navigate('/admin');
+                     });
 
                 
                 // alert(response.data.message);
