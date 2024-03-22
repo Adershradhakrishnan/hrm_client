@@ -11,6 +11,8 @@ import Userdetails from './components/Userdetails/Userdetails';
 import Resetpassword from './components/Resetpassword/Resetpassword';
 import Forgotpassword from './components/Forgotpassword/Forgotpassword';
 import Changepassword from './components/Changepassword/Changepassword';
+import User from './components/User/User';
+import AddUserformik from './components/formic validation/AddUser';
 function App() {
   
 
@@ -23,13 +25,15 @@ function App() {
    
        <Route path="/" exact element={<Landingpage/>}/>
        <Route path="/login" exact element={<Login/>}/>
-       <Route path="/adduser" exact element={<AddUser/>}/>
+       <Route path="/adduser" exact element={<AddUserformik/>}/>
         <Route path="/admin" exact element={<Admin/>}/> 
         <Route path="/getuser" exact element={<Getuser/>}/>
         <Route path="/detailsuser/:userId" exact element={<Userdetails/>}/>
         <Route path="/reset-password" exact element={<Resetpassword/>}/>
         <Route path="/forgot-password" exact element={<Forgotpassword/>}/>
         <Route path="/changepassword" exact element={<Changepassword/>}/>
+        <Route path="/user" exact element={<User/>}/>
+       
        </Routes>
        </div>
        </Router>

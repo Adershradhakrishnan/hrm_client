@@ -136,7 +136,7 @@ function AddUser(){
                 },
                 body: json_data,
             });
-            // console.log('Response received',response);
+            console.log('Response received',response);
 
             const responseData = response.data;
             console.log(responseData)

@@ -13,6 +13,7 @@ function Changepassword() {
     const navigate = useNavigate();
 
     const handleChangePassword = async (event) => {
+        // console.log("handleChangePassword: ",handleChangePassword);
         event.preventDefault();
 
         if (newPassword !== confirmPassword) {
@@ -23,8 +24,9 @@ function Changepassword() {
         try{
 
             const token = localStorage.getItem("token");
+            console.log("token: ",token);
             const response = await axios.patch(
-                "http://localhost:3000/changepassword",
+                'http://localhost:3000/changepassword',
                 {
                     currentPassword: currentPassword,
                     newPassword: newPassword
@@ -35,6 +37,7 @@ function Changepassword() {
                     }
                 }
             );
+            console.log("response: ",response);
 
             Swal.fire({
                 icon: "success",
@@ -54,14 +57,14 @@ function Changepassword() {
             <h2>change password</h2>
             <form onSubmit={handleChangePassword}>
                 <div className="form-group">
-                    <input type="password" placeholder="current password" value={currentPassword} onChange={(e)=> setCurrentPassword(e.target.value)}/>
+                    <input type="password" placeholder="currentPassword" value={currentPassword} onChange={(e)=> setCurrentPassword(e.target.value)}/>
 
                 </div>
                 <div className="form-group">
-                    <input type="password" placeholder="New password" value={newPassword} onChange={(e)=> setNewPassword(e.target.value)}/>
+                    <input type="password" placeholder="newPassword" value={newPassword} onChange={(e)=> setNewPassword(e.target.value)}/>
                 </div>
                 <div className="form-group">
-                    <input type="password" placeholder="Confirm New password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                    <input type="password" placeholder="confirmPassword" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
                 </div>
                 <button type="submit" className="button">Change password</button>
                 {errorMessage && <div className="error-message">{errorMessage}</div>}

@@ -46,12 +46,13 @@ function Login(){
         //     }
         //     if (!password) {
         //         setPassworderror('Please enter your password');
-        //     }
+        //      }
         //     return;
         //  }
-        // if (!emailerror || !passworderror) {
+        //  if (!emailerror || !passworderror) {
         //     return;
         //  }
+
         try{
             const response = await axios.post('http://localhost:3000/login',{
                 email: email,
