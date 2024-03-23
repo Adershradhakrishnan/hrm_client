@@ -69,26 +69,30 @@ function AddUserformik(){
             const responseData = response.data;
             console.log(responseData)
              if(responseData.success){
-                const passwordFromServer = response.data.password;
-                setGeneratedPassword(passwordFromServer);
+                // const passwordFromServer = response.data.password;
+                // setGeneratedPassword(passwordFromServer);
 
+                setGeneratedPassword(responseData.password);
                 Swal.fire({
                     icon: "success",
                     title: "success",
-                    text:response.message
+                    text:responseData.message
                 });
+            }else if(responseData.errors) {
+                //handle errors from the server
             }
 
            
         } catch(error) {
+            console.log("Error:",error);
            Swal.fire({
             icon: "error",
             title: "error",
             text: "invalid email or password"
-           })
+           });
         }
         setSubmitting(false);
-    }
+    };
 
     return(
 
@@ -103,47 +107,54 @@ function AddUserformik(){
             }}
 
             validationSchema ={Yup.object({
-                name: Yup.string().min(3,'Too Short').max(30,'Too Long...').required('Enter your UserName'),
+                name: Yup.string().min(3,'Too Short...').max(30,'Too Long...').required('Enter your UserName'),
                 email: Yup.string().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,'invalid email').required('Enter your Email'),
                 phonenumber: Yup.string().matches(/^[0-9]{10}$/, 'phone number must be 10 digits').required('Enter Your PhoneNumber'),
                 pincode: Yup.string().matches(/^[0-9]{6}$/, 'pincode must be 6 digits').required('Enter Your Pincode'),
             })}
 
             onSubmit={handleAddUser}
+            validateOnChange
+            validateOnBlur
+        
             >
-            <Form className='adddetails'>
+                {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isSubmitting })=> (
+
+                
+            <Form className='adddetails' onSubmit={handleSubmit}>
 
                 <div>
                 <label htmlFor="name">Enter Your UserName</label>
-                <Field type="text" placeholder="Username" name='name'/>
+                <Field type="text" name='name' placeholder=" Enter Your Username" onChange={handleChange} onBlur={handleBlur} value={values.name}/>
                 <ErrorMessage name="name" component="div" className="error-message"/>
                 </div>
                  
                  <div>
                 <label htmlFor="email">Enter Your Email</label>
-                <Field type="email" placeholder="email" name='email'/>
+                <Field type="email" name='email' placeholder="Enter Your Email" onChange={handleChange} onBlur={handleBlur} value={values.email}/>
                 <ErrorMessage name="email" component="div" className="error-message"/>
                 </div>
                 
                 <div>
                 <label htmlFor="phonenumber">Enter Your PhoneNumber</label>
-                <Field type="text" placeholder="Enter Your PhoneNumber" name='phonenumber'/>
+                <Field type="text" name='phonenumber' placeholder="Enter Your PhoneNumber" onChange={handleChange} onBlur={handleBlur} value={values.phonenumber}/>
                 <ErrorMessage name="phonenumber" component="div" className="error-message"/>
                 </div>
                 
                 <div>
                 <label htmlFor="pincode">Enter Your Pincode</label>
-                <Field type="pincode" placeholder="Enter Your Pincode" name='pincode'/>
+                <Field type="pincode" name='pincode' placeholder="Enter Your Pincode" onChange={handleChange} onBlur={handleBlur} value={values.pincode}/>
                 <ErrorMessage name="pincode" component="div" className="error-message"/>
                 </div>
 
                 <div className="centre">
                     {/* <Link to="/getuser"> */}
-                        <button type="submit" >Add User</button>
+                        <button type="submit" disabled={isSubmitting}>Add User</button>
                         {/* </Link> */}
                 </div>
                 
             </Form>
+                )}
             </Formik>
             {generatedPassword && <p>password generated: {generatedPassword}</p>}
         </div>
